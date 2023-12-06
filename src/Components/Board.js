@@ -1,44 +1,38 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "../App.css"
 import Square from "./Square";
 
 
-function Board() {
-
-  const [squares, setsquares] = useState(Array(9).fill(null));
-  console.log(squares,"SQUARES")
-  const [xIsNext, setXIsNext] = useState(true);
-  const  [history, setHistory] = useState([]);
-  // console.log(squares)
-
-
-  const winner = calculateWinner(squares);
-  let status;
-  if(winner){
-    status = "winner:" + winner
-  }else{
-    status="Next Player:" + (xIsNext ? "x":"o")
-  }
-
+function Board({isNext, squares, onPlay}) {
+  
+ 
 
   function handleClick(index) {
     
     if(squares[index] || calculateWinner(squares)){
       return
     }
-    const nextSquares = squares.slice();
+    const nextSquares = [...squares];
 
-    if (xIsNext) {
+    if (isNext) {
       nextSquares[index] = "X"
     } else {
       nextSquares[index] = "O"
     }
-    setsquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares)
+
     
-    // console.log(nextSquares, "splice");
+    
+  }
 
 
+ // display winner
+  const winner = calculateWinner(squares);
+  let status;
+  if(winner){
+    status = "winner:" + winner
+  }else{
+    status="Next Player:" + (isNext ? "x":"o")
   }
   function calculateWinner(squares) {
     const lines = [

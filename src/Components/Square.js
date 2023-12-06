@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css"
-import "../Components/Board"
+// import Board from "../Components/Board";
 
 function Square( props) {
     return (
