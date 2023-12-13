@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import "../App.css"
 import Square from "./Square";
+import Form from "../Components/Form"
 
 
 function Board({isNext, squares, onPlay}) {
@@ -75,6 +76,9 @@ function Board({isNext, squares, onPlay}) {
         <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      </div>
+      <div>
+        <Form />
       </div>
     </div>
   );

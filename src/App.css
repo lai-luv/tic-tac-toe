@@ -6,15 +6,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(74, 202, 244);
 }
 .App{
   width: 50%;
   margin: 4em auto;
   text-align: center;
+  background-color: rgb(4, 139, 241);
 }
 
 .board-row{
   display: flex;
   justify-content: center;
+  background-color: rgb(5, 68, 116);
+  
+}
+.status{
+  background-color: rgb(160, 211, 221);
+}
+.game-info{
+  background-color: aqua;
+  color: rgb(122, 3, 122);
+}
+
+.moves{
+  background-color: rgb(115, 115, 197);
   
 }
