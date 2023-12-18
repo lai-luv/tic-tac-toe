@@ -5,14 +5,20 @@ const Form = () =>{
         player1:"",
         player2:""
     })
+    const [userFormData, setUserFormData]=useState({})
+
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
       };
+
+
     
      
       const handleSubmit = (e) => {
         e.preventDefault();
+        setUserFormData(formData)
         console.log("Form submitted:", formData);
       };
     return(
@@ -37,6 +43,8 @@ const Form = () =>{
                 </label>
             </div>
             <br />
+            <p>Player 1 :{userFormData.player1}</p>
+            <p>Player 2 :{userFormData.player2}</p>
             <button type="submit"> submit</button>
 
             </form>
