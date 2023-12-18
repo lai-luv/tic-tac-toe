@@ -1,51 +1,32 @@
-import { useState } from "react";
-
-const Form = () =>{
-    const [formData, setFormData]= useState({
-        player1:"",
-        player2:""
-    })
-    const [userFormData, setUserFormData]=useState({})
 
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
-
-
+const Form = (props) =>{
     
-     
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        setUserFormData(formData)
-        console.log("Form submitted:", formData);
-      };
     return(
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={props.handleSubmit}>
+            <div className="player1">
             <label>Player1:
             <input 
             type="text"
             name="player1"
-            value={formData.player1}
-            onChange={handleInputChange} />
+            value={props.formData.player1}
+            onChange={props.handleInputChange} />
             </label>
             </div>
             <br />
-            <div>
+            <div className="player2">
                 <label>Player2: 
                     <input
                     type="text"
                     name="player2"
-                    value={formData.player2}
-                    onChange={handleInputChange} />
+                    value={props.formData.player2}
+                    onChange={props.handleInputChange} />
                 </label>
             </div>
             <br />
-            <p>Player 1 :{userFormData.player1}</p>
-            <p>Player 2 :{userFormData.player2}</p>
-            <button type="submit"> submit</button>
+            <p className="player">Player 1 :{props.userFormData.player1}</p>
+            <p className="player">Player 2 :{props.userFormData.player2}</p>
+            <button className="submitButton" type="submit"> submit</button>
 
             </form>
     )

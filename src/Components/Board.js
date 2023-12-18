@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import "../App.css"
 import Square from "./Square";
 import Form from "../Components/Form"
@@ -6,7 +6,12 @@ import Form from "../Components/Form"
 
 function Board({isNext, squares, onPlay}) {
   
- 
+  const [formData, setFormData]= useState({
+    player1:"",
+    player2:""
+})
+const [userFormData, setUserFormData]=useState({});
+const [showStatus, setShowStatus] = useState(false);
 
   function handleClick(index) {
     
@@ -26,6 +31,7 @@ function Board({isNext, squares, onPlay}) {
     
   }
 
+  
 
  // display winner
   const winner = calculateWinner(squares);
@@ -33,7 +39,7 @@ function Board({isNext, squares, onPlay}) {
   if(winner){
     status = "winner:" + winner
   }else{
-    status="Next Player:" + (isNext ? "x":"o")
+    status="Next Player:" + (isNext ? userFormData.player1:userFormData.player2)
   }
   function calculateWinner(squares) {
     const lines = [
@@ -59,9 +65,30 @@ function Board({isNext, squares, onPlay}) {
   
 
 
+const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+
+
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUserFormData(formData)
+    setShowStatus(true)
+    setFormData({
+        player1:"",
+        player2:""   
+    })
+    console.log("Form submitted:", formData);
+  };
+  
+
+
   return (
     <div>
-      <div className="status">{status}</div>
+      {showStatus ?  <div className="status">{status}</div> : null}
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -78,7 +105,7 @@ function Board({isNext, squares, onPlay}) {
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
       <div>
-        <Form />
+        <Form  formData={formData}  userFormData={userFormData}  handleInputChange={ handleInputChange} handleSubmit={handleSubmit}/>
       </div>
     </div>
   );
