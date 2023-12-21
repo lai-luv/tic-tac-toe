@@ -21,9 +21,9 @@ const [showStatus, setShowStatus] = useState(false);
     const nextSquares = [...squares];
 
     if (isNext) {
-      nextSquares[index] = userFormData.player1
+      nextSquares[index] = "X"
     } else {
-      nextSquares[index] = userFormData.player2
+      nextSquares[index] = "O"
     }
     onPlay(nextSquares)
 
